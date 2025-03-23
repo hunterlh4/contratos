@@ -1,0 +1,20 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Denegar acceso a las carpetas específicas
+# RewriteRule ^(assets|Config|Controllers|Models)/ - [F]
+
+
+
+RewriteRule ^(Views|Config|Controllers|Models)/.*$ BASE_URL/Views/Errors/index.php [L]
+RewriteRule ^(Uploads/DNI|Uploads/Institucion)/.*$ BASE_URL/Views/Errors/index.php [L]
+
+
+# Requerir autenticación para acceder a la carpeta uploads
+# AuthType Basic
+# AuthName "Restricted Access"
+# AuthUserFile /assets/Uploads/.htpasswd
+# Require valid-user
+
