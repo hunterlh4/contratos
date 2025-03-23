@@ -194,7 +194,7 @@ function registrar() {
     contentType: false,
     success: function (response) {
       console.log(response);
-      console.log(formData.data);
+     
       const res = JSON.parse(response);
       // if(res.icono=="success"){
         if (res.icono == "success") {

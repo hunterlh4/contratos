@@ -77,7 +77,7 @@ ORDER BY
     }
     public function registrar($usuario, $password, $sistema, $personal_id, $rol_id)
     {
-        $sql = "INSERT INTO usuario (username,password,nombre, apellido, sistema, trabajador_id,direccion,nacimiento,dni) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (username,password,sistema, personal_id,rol_id) VALUES (?,?,?,?,?)";
         $array = array($usuario, $password,  $sistema, $personal_id, $rol_id);
 
         return $this->insertar($sql, $array);
