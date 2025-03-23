@@ -1,5 +1,5 @@
 <?php
-class Cargo extends Controller
+class Area extends Controller
 {
     public function __construct()
     {
@@ -18,14 +18,14 @@ class Cargo extends Controller
     {
 
 
-        $data['title'] = 'Cargos';
+        $data['title'] = 'Areas';
         $data1 = '';
 
-        $this->views->getView('Administracion', "Cargo", $data, $data1);
+        $this->views->getView('Administracion', "Area", $data, $data1);
     }
     public function listar()
     {
-        $data = $this->model->getCargos();
+        $data = $this->model->getAreas();
         for ($i = 0; $i < count($data); $i++) {
 
             $datonuevo = $data[$i]['estado'];
@@ -77,7 +77,7 @@ class Cargo extends Controller
             } else {
                 $error_msg = '';
                 if (strlen($nombre) < 5 || strlen($nombre) > 31) {
-                    $error_msg .= 'El Cargo debe tener entre 5 y 30 caracteres. <br>';
+                    $error_msg .= 'El Area debe tener entre 5 y 30 caracteres. <br>';
                 }
                 if ($nivel <= 0 || $nivel >= 10) {
                     $error_msg .= 'El Nivel debe de entre 1 a 10. <br>';
@@ -94,25 +94,25 @@ class Cargo extends Controller
                             $data = $this->model->registrar($nombre, $nivel);
 
                             if ($data > 0) {
-                                $respuesta = array('msg' => 'Cargo registrado', 'icono' => 'success');
-                                $this->model->registrarlog($_SESSION['id'], 'Crear', 'Cargos', $datos_log_json);
+                                $respuesta = array('msg' => 'Area registrado', 'icono' => 'success');
+                                $this->model->registrarlog($_SESSION['id'], 'Crear', 'Areas', $datos_log_json);
                             } else {
                                 $respuesta = array('msg' => 'error al registrar', 'icono' => 'error');
                             }
                         } else {
-                            $respuesta = array('msg' => 'Cargo en uso', 'icono' => 'warning');
+                            $respuesta = array('msg' => 'Area en uso', 'icono' => 'warning');
                         }
                         // MODIFICAR
                     } else {
                         if ($result) {
                             if ($result['id'] != $id) {
-                                $respuesta = array('msg' => 'Cargo en uso', 'icono' => 'warning');
+                                $respuesta = array('msg' => 'Area en uso', 'icono' => 'warning');
                             } else {
                                 // El nombre de usuario es el mismo que el original, se permite la modificación
                                 $data = $this->model->modificar($nombre, $nivel, $estado, $id);
                                 if ($data == 1) {
-                                    $respuesta = array('msg' => 'Cargo modificado', 'icono' => 'success');
-                                    $this->model->registrarlog($_SESSION['id'], 'Modificar', 'Cargos', $datos_log_json);
+                                    $respuesta = array('msg' => 'Area modificado', 'icono' => 'success');
+                                    $this->model->registrarlog($_SESSION['id'], 'Modificar', 'Areas', $datos_log_json);
                                 } else {
                                     $respuesta = array('msg' => 'Error al modificar', 'icono' => 'error');
                                 }
@@ -122,7 +122,7 @@ class Cargo extends Controller
                             $data = $this->model->modificar($nombre, $nivel, $estado, $id);
                             if ($data == 1) {
                                 $respuesta = array('msg' => 'Usuario modificado', 'icono' => 'success');
-                                $this->model->registrarlog($_SESSION['id'], 'Modificar', 'Cargos', $datos_log_json);
+                                $this->model->registrarlog($_SESSION['id'], 'Modificar', 'Areas', $datos_log_json);
                             } else {
                                 $respuesta = array('msg' => 'Error al modificar el usuario', 'icono' => 'error');
                             }
@@ -156,7 +156,7 @@ class Cargo extends Controller
     public function edit($id)
     {
         if (is_numeric($id)) {
-            $data = $this->model->getCargo($id);
+            $data = $this->model->getArea($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
         }
         die();

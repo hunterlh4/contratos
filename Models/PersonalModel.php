@@ -12,19 +12,24 @@ class PersonalModel extends Query
         // $sql = "SELECT * FROM horario_detalle WHERE horario_id = $id";
 
         $sql = "SELECT 
-                T.id as tid,
-                T.dni as tdni,
-                T.apellido_nombre AS tnombre, 
-                D.nombre AS dnombre, 
-                C.nombre AS cnombre, 
-                R.nombre AS rnombre, 
-                T.estado as testado
+                p.id as personal_id,
+                p.dni as personal_dni,
+                p.nombre AS personal_nombre,
+                p.apellido_paterno AS personal_apellido_paterno, 
+                 p.apellido_materno AS personal_apellido_materno, 
+                 p.correo as personal_correo,
+                
+                a.id AS area_id, 
+                a.nombre AS area_nombre, 
+                c.id AS cargo_id, 
+                c.nombre AS cargo_nombre,
+                p.estado as personal_estado
               
-                FROM Personal AS T 
-                INNER JOIN direccion AS D ON T.direccion_id = D.id 
-                INNER JOIN cargo AS C ON T.cargo_id = C.id
-                INNER JOIN regimen AS R ON T.regimen_id = R.id
-                ORDER BY T.id asc ";
+                FROM Personal AS p 
+                left JOIN area AS a ON p.area_id = a.id 
+                left JOIN cargo AS C ON p.cargo_id = c.id
+              
+                ORDER BY p.id asc";
         // $sql = "SELECT T.id as tid,T.estado as testado from Personales as T ORDER BY id ASC";
         return $this->selectAll($sql);
     }

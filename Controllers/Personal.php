@@ -29,23 +29,29 @@ class Personal extends Controller
         $data = $this->model->getPersonales();
 
         for ($i = 0; $i < count($data); $i++) {
-            $data_estado = $data[$i]['testado'];
-            $data_cargo = $data[$i]['cnombre'];
-            $data_regimen = $data[$i]['rnombre'];
-            if ($data_cargo == 'SIN ASIGNAR') {
-                $data[$i]['cnombre'] = '-';
-            }
-            if ($data_regimen == 'SIN ASIGNAR') {
-                $data[$i]['rnombre'] = '-';
-            }
-            if ($data_estado == 'Activo') {
-                $data[$i]['estado'] = "<div class='badge badge-info'>Activo</div>";
-            } else {
-                $data[$i]['estado'] = "<div class='badge badge-danger'>Inactivo</div>";
-            }
+
+            $data[$i]['contador'] = $i + 1;
+            $data_apellido_paterno = $data[$i]['personal_apellido_paterno'];
+            $data_apellido_paterno = $data[$i]['personal_apellido_materno'];
+            $data[$i]['personal_apellido'] = trim($data[$i]['personal_apellido_paterno'] . ' ' . ($data[$i]['personal_apellido_materno'] ?? ''));
+
+
+            // $data_cargo = $data[$i]['cnombre'];
+            // $data_regimen = $data[$i]['rnombre'];
+            // if ($data_cargo == 'SIN ASIGNAR') {
+            //     $data[$i]['cnombre'] = '-';
+            // }
+            // if ($data_regimen == 'SIN ASIGNAR') {
+            //     $data[$i]['rnombre'] = '-';
+            // }
+            // if ($data_estado == 'Activo') {
+            //     $data[$i]['estado'] = "<div class='badge badge-info'>Activo</div>";
+            // } else {
+            //     $data[$i]['estado'] = "<div class='badge badge-danger'>Inactivo</div>";
+            // }
             $data[$i]['accion'] = '<div class="d-flex">
-            <button class="btn btn-primary" type="button" onclick="edit(' . $data[$i]['tid'] . ')"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" type="button" onclick="verHistorial(' . $data[$i]['tid'] . ')"><i class="fas fa-eye"></i></button>
+            <button class="btn btn-primary" type="button" onclick="edit(' . $data[$i]['personal_id'] . ')"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger" type="button" onclick="verHistorial(' . $data[$i]['personal_id'] . ')"><i class="fas fa-eye"></i></button>
             </div>';
         }
         echo json_encode($data);
