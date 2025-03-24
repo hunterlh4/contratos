@@ -15,7 +15,7 @@ class AreaModel extends Query
 
     public function getAllActivo()
     {
-        $sql = "SELECT * from Area where estado=1 ORDER BY id ASC";
+        $sql = "SELECT * from Area  ORDER BY nombre ASC";
 
         return $this->selectAll($sql);
     }

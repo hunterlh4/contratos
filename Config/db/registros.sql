@@ -424,20 +424,12 @@ VALUES
 
 
 INSERT INTO etapa_contrato
-    (nombre, descripcion, orden, descripcion_orden, area_id, situacion, estado)
+    (nombre, descripcion, orden, descripcion_orden, area_id, estado)
 VALUES
-    ('Ficha contrato', 'Ficha de contrato concluido', 1, 'Primera etapa', 15, 'Pendiente', 1),
-    ('Aprobación gerencia legal', 'En proceso de aprobación de gerencia legal', 2, 'Segunda etapa', 26, 'En proceso', 1),
-    ('Subsanando gerencia comercial', 'Subsanando observaciones', 3, 'Tercera etapa', 15, 'Observado', 1),
-    ('Firma del contrato', 'Contrato en proceso de firma', 4, 'Cuarta etapa', 15, 'Por firmar', 1),
-    ('Contrato aprobado', 'Contrato firmado y aprobado', 5, 'Quinta etapa', 26, 'Firmado', 1),
-    ('Aprobado', NULL, 6, NULL, NULL, 'Aprobado', 1),
-    ('Rechazado', NULL, 7, NULL, NULL, 'Rechazado', 1),
-    ('Cerrada', 'Asignación dado de baja', 8, NULL, NULL, 'Asignación dado de baja', 1),
-    ('Enviado a Tesorería', 'Enviado a Tesorería', 9, NULL, NULL, 'Enviado a Tesorería', 1),
-    ('Pendiente de Pago', 'Tesorería pendiente de pago', 10, NULL, NULL, 'Pendiente de Pago', 1),
-    ('Pagado', 'Tesorería pago realizado', 11, NULL, NULL, 'Pago realizado', 1),
-    ('Aprobar y Cerrar Caja Chica', NULL, 12, NULL, NULL, 'Aprobar y Cerrar Caja Chica', 1),
-    ('Dado de Baja', 'Mesa de Partes', 13, NULL, NULL, 'Dado de Baja', 1),
-    ('Revertir dar de baja', 'Mesa de Partes', 14, NULL, NULL, 'Revertir dar de baja', 1);
-
+    ('Pendiente', 'El contrato ha sido creado y está en espera de revisión.', 1, 'Primera etapa', NULL, 1),
+    ('En revisión', 'Se está evaluando el contrato.', 2, 'Segunda etapa', NULL, 1),
+    ('Observado', 'Se han encontrado observaciones y debe corregirse.', 3, 'Tercera etapa', NULL, 1),
+    ('Aprobado - Listo para firma', 'El contrato ha sido aprobado, pero aún no firmado.', 4, 'Cuarta etapa', NULL, 1),
+    ('Firmado', 'El contrato ha sido firmado por todas las partes.', 5, 'Quinta etapa', NULL, 1),
+    ('Cerrado', 'El proceso del contrato ha concluido correctamente.', 6, 'Sexta etapa', NULL, 1),
+    ('Rechazado', 'El contrato ha sido rechazado y no continuará.', 7, 'Séptima etapa', NULL, 1);

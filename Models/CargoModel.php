@@ -15,7 +15,7 @@ class CargoModel extends Query
 
     public function getAllActivo()
     {
-        $sql = "SELECT * from cargo where estado=1 ORDER BY id ASC";
+        $sql = "SELECT * from cargo  ORDER BY nombre ASC";
 
         return $this->selectAll($sql);
     }

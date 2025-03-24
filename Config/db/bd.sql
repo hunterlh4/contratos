@@ -82,8 +82,8 @@ CREATE TABLE cargo (
 
 CREATE TABLE persona (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo_persona INT NOT NULL,
-    tipo_documento_identidad INT NOT NULL,
+    tipo_persona INT  NULL,
+    tipo_documento_identidad INT  NULL,
     numero_documento VARCHAR(12) NOT NULL,
     numero_ruc VARCHAR(11) NULL DEFAULT NULL,
     nombre VARCHAR(100) NOT NULL,
@@ -96,8 +96,8 @@ CREATE TABLE persona (
     contacto_telefono VARCHAR(100) NULL DEFAULT NULL,
     contacto_email VARCHAR(100) NULL DEFAULT NULL,
     estado BOOLEAN DEFAULT 1,
-    user_created_id INT NOT NULL,
-    created_at DATETIME NOT NULL,
+    user_created_id INT  NULL,
+    created_at DATETIME  NULL,
     user_updated_id INT NULL DEFAULT NULL,
     updated_at DATETIME NULL DEFAULT NULL
 );
@@ -279,8 +279,8 @@ CREATE TABLE etapa_contrato (
     orden INT NOT NULL DEFAULT 0,
     descripcion_orden TEXT NULL,
     area_id INT NULL,
-    situacion VARCHAR(100) NOT NULL, 
-    estado BOOLEAN NOT NULL DEFAULT TRUE, -- Usando BOOLEAN en lugar de TINYINT(1)
+    situacion VARCHAR(100)  NULL, 
+    estado BOOLEAN NULL DEFAULT 1, -- Usando BOOLEAN en lugar de TINYINT(1)
     
     FOREIGN KEY (area_id) REFERENCES area(id) ON DELETE CASCADE
 );
@@ -290,17 +290,17 @@ CREATE TABLE etapa_contrato (
 
 CREATE TABLE contrato (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo_contrato_id INT NOT NULL, -- Relacionado con el tipo de contrato
-    codigo_correlativo VARCHAR(50) NOT NULL, -- Ejemplo: A1, L1, M1, etc.
+    tipo_contrato_id INT  NULL, -- Relacionado con el tipo de contrato
+    codigo_correlativo VARCHAR(50)  NULL, -- Ejemplo: A1, L1, M1, etc.
     personal_abogado_id INT NULL, -- (personal) cargo abogado
 	persona_emisor_id INT NULL, -- Arrendador
 	persona_receptor_id INT NULL, -- Arrendatario (si aplica)
-  	etapa_contrato_id INT NOT NULL,  -- 'Aprobado', 'Rechazado', 'Vigente', 'Finalizado'
+  	etapa_contrato_id INT NULL default 1 ,  -- 'Aprobado', 'Rechazado', 'Vigente', 'Finalizado'
 	-- estado
 	fecha_suscripcion DATE NULL, -- Fecha en la que se ponen de acuerdo
 -- GENERALES
 	fecha_aprobacion DATE NULL, -- Fecha de aprobación en el sistema
-	aprobador_id INT NULL, -- Usuario que aprueba
+	personal_aprobador_id INT NULL, -- Usuario que aprueba
 		
 -- ALERTAS Y PLAZOS
     alerta_dia INT NULL, -- Días antes de que se active la alerta
@@ -316,7 +316,7 @@ CREATE TABLE contrato (
     cuenta_bancaria VARCHAR(50) NULL, -- Número de cuenta
 
 -- 🏠 CAMPOS SOLO PARA ARRENDAMIENTO
- 	distrito_id int NULL, -- **Reemplazo de ubigeo**
+ 	ubigeo varchar(6) NULL, -- **Reemplazo de ubigeo**
     direccion TEXT NULL, 
     numero_partida_registral VARCHAR(50) NULL,
     sede VARCHAR(100) NULL,
@@ -337,18 +337,20 @@ CREATE TABLE contrato (
 
 -- GENERAL EDIT
 
-	user_created_id INT NOT NULL,
+	user_created_id INT  NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
 
-      FOREIGN KEY (tipo_contrato_id) REFERENCES tipo_contrato(id),
+     FOREIGN KEY (tipo_contrato_id) REFERENCES tipo_contrato(id),
     FOREIGN KEY (personal_abogado_id) REFERENCES personal(id),
     FOREIGN KEY (persona_emisor_id) REFERENCES persona(id),
     FOREIGN KEY (persona_receptor_id) REFERENCES persona(id),
-    FOREIGN KEY (banco_id) REFERENCES banco(id),
-    FOREIGN KEY (moneda_id) REFERENCES moneda(id),
-    FOREIGN KEY (distrito_id) REFERENCES distrito(id) -- NUEVO
+    FOREIGN KEY (personal_aprobador_id) REFERENCES personal(id),
+    FOREIGN KEY (banco_id) REFERENCES banco(id) ON DELETE SET NULL,
+    FOREIGN KEY (moneda_id) REFERENCES moneda(id) ON DELETE SET NULL,
+    FOREIGN KEY (etapa_contrato_id) REFERENCES etapa_contrato(id) ON DELETE SET NULL
+    -- FOREIGN KEY (distrito_id) REFERENCES distrito(id) -- NUEVO
 );
 
 CREATE TABLE tipo_archivo (
@@ -360,7 +362,7 @@ CREATE TABLE tipo_archivo (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-     FOREIGN KEY (tipo_contrato_id) REFERENCES contrato(id) ON DELETE CASCADE
+     FOREIGN KEY (tipo_contrato_id) REFERENCES contrato(id) ON DELETE CASCADE,
     FOREIGN KEY (user_created_id) REFERENCES usuario(id) ON DELETE CASCADE,
     FOREIGN KEY (user_updated_id) REFERENCES usuario(id) ON DELETE SET NULL
 );

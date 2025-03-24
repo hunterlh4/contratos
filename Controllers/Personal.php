@@ -37,11 +37,11 @@ class Personal extends Controller
 
 
             // $data_cargo = $data[$i]['cnombre'];
-            // $data_regimen = $data[$i]['rnombre'];
+            // $data_cargo = $data[$i]['rnombre'];
             // if ($data_cargo == 'SIN ASIGNAR') {
             //     $data[$i]['cnombre'] = '-';
             // }
-            // if ($data_regimen == 'SIN ASIGNAR') {
+            // if ($data_cargo == 'SIN ASIGNAR') {
             //     $data[$i]['rnombre'] = '-';
             // }
             // if ($data_estado == 'Activo') {
@@ -67,21 +67,21 @@ class Personal extends Controller
         return $data;
     }
 
-    public function listarDireccion()
+    public function listararea()
     {
-        $data1 = $this->model->getDireccion();
+        $data1 = $this->model->getarea();
 
         echo json_encode($data1, JSON_UNESCAPED_UNICODE);
         die();
     }
 
-    public function listarCargo()
-    {
-        $data1 = $this->model->getCargo();
+    // public function listarCargo()
+    // {
+    //     $data1 = $this->model->getCargo();
 
-        echo json_encode($data1, JSON_UNESCAPED_UNICODE);
-        die();
-    }
+    //     echo json_encode($data1, JSON_UNESCAPED_UNICODE);
+    //     die();
+    // }
 
     public function listarHorarioDetalle()
     {
@@ -91,30 +91,30 @@ class Personal extends Controller
         die();
     }
 
-    public function listarRegimen()
-    {
-        $data1 = $this->model->getRegimen();
+    // public function listarcargo()
+    // {
+    //     $data1 = $this->model->getcargo();
 
-        echo json_encode($data1, JSON_UNESCAPED_UNICODE);
-        die();
-    }
+    //     echo json_encode($data1, JSON_UNESCAPED_UNICODE);
+    //     die();
+    // }
 
     public function registrar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dni = $_POST['dni'] ?? '';
             $telefono = $_POST['telefono'] ?? '';
-            $tarjeta = $_POST['tarjeta'] ?? '';
+            $celular = $_POST['celular'] ?? '';
             $nombre = $_POST['nombre'] ?? '';
-            $apellido = $_POST['apellido'] ?? '';
+            $apellido_paterno = $_POST['apellido_paterno'] ?? '';
+            $apellido_materno = $_POST['apellido_materno'] ?? '';
             $email = $_POST['email'] ?? '';
-            $nacimiento = $_POST['nacimiento'] ?? '';
-            $sexo = $_POST['sexo'] ?? '';
-            $direccion_id = $_POST['direccion'] ?? '';
-            $regimen_id = $_POST['regimen'] ?? '';
+            // $nacimiento = $_POST['nacimiento'] ?? '';
+            // $sexo = $_POST['sexo'] ?? '';
+            $area_id = $_POST['area'] ?? '';
             $cargo_id = $_POST['cargo'] ?? '';
-            $modalidad = $_POST['modalidad'] ?? '';
-            $horario_id = $_POST['horario'] ?? '';
+
+
             $estado = $_POST['estado'] ?? '';
             $id = $_POST['id'] ?? '';
 
@@ -132,47 +132,52 @@ class Personal extends Controller
             if (empty($nombre)) {
                 $error_msg .= 'El campo <b>Nombre</b> es obligatorio.<br>';
             }
-            if (empty($apellido)) {
+            if (empty($apellido_paterno)) {
                 $error_msg .= 'El campo <b>Apellido</b> es obligatorio.<br>';
             }
-            if (empty($nacimiento)) {
-                $error_msg .= 'El campo <b>Fecha de nacimiento</b> es obligatorio.<br>';
+
+            // if (empty($nacimiento)) {
+            //     $error_msg .= 'El campo <b>Fecha de nacimiento</b> es obligatorio.<br>';
+            // }
+            // if (empty($sexo)) {
+            //     $error_msg .= 'El campo <b>Sexo</b> es obligatorio.<br>';
+            // }
+
+            if (empty($email)) {
+                $error_msg .= 'El campo <b>Correo</b> es obligatori111o.<br>';
             }
-            if (empty($sexo)) {
-                $error_msg .= 'El campo <b>Sexo</b> es obligatorio.<br>';
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error_msg .= 'El <b>Correo</b> no es válido.<br>';
             }
-            if (empty($direccion_id)) {
-                $error_msg .= 'El campo <b>Dirección</b> es obligatorio.<br>';
+            if (empty($area_id)) {
+                $error_msg .= 'El campo <b>Area</b> es obligatorio.<br>';
             }
-            if (empty($regimen_id)) {
-                $error_msg .= 'El campo <b>Régimen</b> es obligatorio.<br>';
-            }
+
             if (empty($cargo_id)) {
                 $error_msg .= 'El campo <b>Cargo</b> es obligatorio.<br>';
             }
-            if (empty($modalidad)) {
-                $error_msg .= 'El campo <b>Modalidad</b> es obligatorio.<br>';
-            }
-            if (empty($horario_id)) {
-                $error_msg .= 'El campo <b>Horario</b> es obligatorio.<br>';
-            }
-            if (empty($estado)) {
-                $error_msg .= 'El campo <b>Estado</b> es obligatorio.<br>';
-            }
+
+            // if (empty($estado)) {
+            //     $error_msg .= 'El campo <b>Estado</b> es obligatorio.<br>';
+            // }
             if ((strlen($nombre) < 3 || strlen($nombre) > 30) && $nombre) {
                 $error_msg .= 'El <b>Nombre</b> debe tener entre 3 y 30 caracteres. <br>';
             }
-            if ((strlen($apellido) < 3 || strlen($apellido) > 30) && $apellido) {
+            if ((strlen($apellido_paterno) < 3 || strlen($apellido_paterno) > 30) && $apellido_paterno) {
                 $error_msg .= 'El <b>Apellido</b> debe tener entre 3 y 30 caracteres. <br>';
             }
-            if (((strlen($tarjeta) < 5 || strlen($tarjeta) > 40)) && $tarjeta) {
-                $error_msg .= 'El <b>Telefono</b> debe tener 9 digitos.<br>';
-            }
+            // if (((strlen($tarjeta) < 5 || strlen($tarjeta) > 40)) && $tarjeta) {
+            //     $error_msg .= 'El <b>Telefono</b> debe tener 9 digitos.<br>';
+            // }
             if (((strlen($email) < 5 || strlen($email) > 40)) && $email) {
                 $error_msg .= 'El <b>email</b> debe tener 9 digitos.<br>';
             }
-            if (((strlen($telefono) < 9) || (strlen($telefono) > 12)) && $telefono) {
+            if (((strlen($telefono) > 0) || (strlen($telefono) > 12)) && $telefono) {
                 $error_msg .= 'El <b>telefono</b>  debe tener 9 digitos.<br>';
+            }
+            if (((strlen($celular) > 0) && (strlen($celular) > 12)) && $celular) {
+                $error_msg .= 'El <b>celular</b>  debe tener 9 digitos.<br>';
             }
             $result = $this->model->verificar($dni);
 
@@ -187,31 +192,44 @@ class Personal extends Controller
             $datos_log = array(
                 "dni" => $dni,
                 "telefono" => $telefono,
-                "tarjeta" => $tarjeta,
+                // "tarjeta" => $tarjeta,
                 "nombre" => $nombre,
-                "apellido" => $apellido,
+                // "apellido" => $apellido,
                 "email" => $email,
-                "nacimiento" => $nacimiento,
-                "sexo" => $sexo,
-                "direccion_id" => $direccion_id,
-                "regimen_id" => $regimen_id,
+                // "nacimiento" => $nacimiento,
+                // "sexo" => $sexo,
+                "area_id" => $area_id,
                 "cargo_id" => $cargo_id,
-                "modalidad" => $modalidad,
-                "horarioDetalle_id" => $horario_id,
+                // "cargo_id" => $cargo_id,
+                // "modalidad" => $modalidad,
+                // "horarioDetalle_id" => $horario_id,
                 "id" => $id,
                 "estado" => $estado,
 
             );
             $datos_log_json = json_encode($datos_log);
 
-            $data = $this->model->modificar($dni, $nombre, $apellido, $direccion_id, $regimen_id, $horario_id, $cargo_id, $email, $telefono, $tarjeta, $sexo, $nacimiento, $modalidad, $estado, $id);
-            if ($data == 1) {
-                $respuesta = ['msg' => 'Personal modificado', 'icono' => 'success'];
-                $this->model->registrarlog($_SESSION['id'], 'Modificar', 'Personal', $datos_log_json);
+            if (empty($id)) {
+                $data = $this->model->registrar($dni, $nombre, $apellido_paterno, $apellido_materno, $area_id, $cargo_id, $email, $telefono, $celular);
+                if ($data > 0) {
+                    $respuesta = ['msg' => 'Personal registrado', 'icono' => 'success'];
+                    // $this->model->createLog($_SESSION['id'], 'Crear', 'Festividades', $datos_log_json);
+                } else {
+                    $respuesta = ['msg' => 'error al registrar', 'icono' => 'error'];
+                }
+                echo json_encode($respuesta);
+                die();
             } else {
-                $respuesta = ['msg' => 'Error al modificar', 'icono' => 'error'];
+                $data = $this->model->modificar($dni, $nombre, $apellido_paterno, $apellido_materno, $area_id, $cargo_id, $email, $telefono, $celular, $estado, $id);
+                if ($data == 1) {
+                    $respuesta = ['msg' => 'Personal modificado', 'icono' => 'success'];
+                    // $this->model->registrarlog($_SESSION['id'], 'Modificar', 'Personal', $datos_log_json);
+                } else {
+                    $respuesta = ['msg' => 'Error al modificar', 'icono' => 'error'];
+                }
+                echo json_encode($respuesta);
+                die();
             }
-            echo json_encode($respuesta);
         }
 
         die();

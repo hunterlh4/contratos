@@ -17,13 +17,14 @@
                                 <div class="card">
                                     <div
                                         class="card-header d-flex justify-content-between align-items-center mb-0 mt-3">
-                                        <h3 class="font-weight-bolder"><i class="fa fa-briefcase"></i> Personales</h3>
+                                        <h3 class="font-weight-bolder"><i class="fa fa-briefcase"></i> Persona</h3>
                                         <div class="ml-auto">
                                             <!-- <button class="btn btn-lg btn-outline-primary rounded-0" type="button" onclick=goBack()>Volver</button> -->
                                             <button class="btn btn-lg btn-outline-primary rounded-0" type="button"
                                                 id="nuevo_registro">Nuevo</button>
                                         </div>
                                     </div>
+
 
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -33,14 +34,15 @@
                                                     <tr>
                                                         <th class="text-center"># </th>
                                                         <th>NOMBRE</th>
-                                                        <th>APELLIDO</th>
-                                                        <!-- <th>A. MATERNO</th> -->
+                                                        <th>TIPO DE PERSONA</th>
+                                                        <!-- <th>TIPO DE DOCUMENTO</th> -->
+
                                                         <th>DNI</th>
+                                                        <th>RUC</th>
                                                         <!-- <th>TELEFONO</th> -->
-                                                        <!-- <th>CELULAR</th> -->
-                                                        <th>CORREO</th>
-                                                        <th>AREA</th>
-                                                        <th>CARGO</th>
+                                                        <th>CELULAR</th>
+                                                        <!-- <th>CORREO</th> -->
+
                                                         <!-- <th>Particular</th> -->
                                                         <th>Estado</th>
                                                         <th>Acción</th>
@@ -65,8 +67,8 @@
     <!-- MODAL -->
     <div id="nuevoModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
         aria-hidden="true">
-        <!--  sm  lg xl -->
-        <div class="modal-dialog modal-lg" role="document">
+        <!--  sm md lg xl -->
+        <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
 
@@ -78,6 +80,8 @@
 
                 <form form id="formulario" class="needs-validation" novalidate="" method="POST" autocomplete="off">
                     <div class="modal-body">
+
+                        <!-- ID -->
                         <input type="hidden" id="id" name="id">
                         <!-- AQUI EMPIEZA -->
 
@@ -87,9 +91,27 @@
                         <hr>
                         <div class="row">
 
+                            <div class="form-group col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <label for="rol">Tipo de Persona</label>
+                                <div class="input-group">
+                                    <!-- <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-address-card"></i>
+                    </div>
+                  </div> -->
+                                    <select class="form-control" id="tipo_persona" name="tipo_persona" required>
+                                        <option value="" selected>Selecciona un Tipo de Persona</option>
+                                        <option value=1>Persona Natural</option>
+                                        <option value=2>Persona Juridica</option>
+                                        <!-- Opciones para la dirección -->
+                                    </select>
+                                </div>
+
+                            </div>
+
 
                             <!-- dni -->
-                            <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                            <div class="form-group col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <label for="dni">DNI</label>
                                 <!-- <button type="button" onclick=consultar()>Consultar</button> -->
                                 <!-- <input type="text" class="form-control" id="dni" name="dni" required> -->
@@ -100,45 +122,39 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control" placeholder="DNI" name="dni" id="dni"
-                                        minlength="8" maxlength="8" required>
+                                        minlength="8" maxlength="8">
 
 
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button" onclick=consultar()> <i
+                                        <button class="btn btn-primary" type="button" onclick="consultar(1)"> <i
                                                 class="fas fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-xl-4 col-lg-6 col-md-12 col-sm-12">
-                                <label for="rol">Cargo</label>
+                            <!-- ruc -->
+                            <div class="form-group col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                                <label for="ruc">RUC</label>
+                                <!-- <button type="button" onclick=consultar()>Consultar</button> -->
+                                <!-- <input type="text" class="form-control" id="dni" name="dni" required> -->
                                 <div class="input-group">
-                                    <!-- <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-address-card"></i>
-                    </div>
-                  </div> -->
-                                    <select class="form-control" id="cargo" name="cargo" required>
-                                        <option value="" selected>Selecciona un cargo</option>
-                                        <!-- Opciones para la dirección -->
-                                    </select>
-                                </div>
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-address-card"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="RUC" name="ruc" id="ruc"
+                                        minlength="11" maxlength="11">
 
-                            </div>
-                            <!-- area -->
-                            <div class="form-group col-xl-4 col-lg-6 col-md-12 col-sm-12">
-                                <label>Area</label>
-                                <div class="input-group">
 
-                                    <select class="form-control" id="area" name="area" required>
-                                        <option value="" selected>Selecciona un area</option>
-                                        <!-- Opciones para la dirección -->
-                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" onclick="consultar(2)"> <i
+                                                class="fas fa-search"></i></button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- NOMBRE -->
                             <!-- nombre -->
-                            <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                            <div class="form-group col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <label for="nombre">Nombre</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -151,55 +167,65 @@
                                 </div>
 
                             </div>
-                            <!-- apellido -->
-                            <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                <label for="apellido">Apellido Paterno</label>
+
+                            <div class="form-group col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                <label for="Direccion">Direccion</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fas fa-address-card"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Apellido Paterno"
-                                        name="apellido_paterno" id="apellido_paterno" minlength="3" maxlength="30"
-                                        required>
+                                    <input type="text" class="form-control" placeholder="Direccion" name="direccion"
+                                        id="direccion" minlength="5" maxlength="30" required>
                                 </div>
 
                             </div>
-
-                            <!-- APELLIDO MATERNO -->
-
+                            <!-- ruc -->
                             <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                <label>Apellido Materno</label>
+                                <label for="rol">Departamento</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-phone"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Apellido Materno"
-                                        name="apellido_materno" id="apellido_materno" maxlength="11">
+                                    <!-- <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-address-card"></i>
+                    </div>
+                  </div> -->
+                                    <select class="form-control" id="departamento" name="departamento" required>
+                                        <option value="" selected>Selecciona un departamento</option>
+                                        <!-- Opciones para la dirección -->
+                                    </select>
+                                </div>
+
+                            </div>
+                            <!-- provincia -->
+                            <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <label>provincia</label>
+                                <div class="input-group">
+
+                                    <select class="form-control" id="provincia" name="provincia" required>
+                                        <option value="" selected>Selecciona un provincia</option>
+                                        <!-- Opciones para la dirección -->
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- distrito -->
+                            <div class="form-group col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <label>distrito</label>
+                                <div class="input-group">
+
+                                    <select class="form-control" id="distrito" name="distrito" required>
+                                        <option value="" selected>Selecciona un distrito</option>
+                                        <!-- Opciones para la dirección -->
+                                    </select>
                                 </div>
                             </div>
 
 
+                            <!-- NOMBRE -->
 
 
-                            <!-- telefono -->
-                            <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                                <label>Teléfono</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-phone"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Telefono" name="telefono"
-                                        id="telefono" maxlength="11">
-                                </div>
-                            </div>
                             <!-- CELULAR -->
-                            <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                            <div class="form-group col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <label>celular</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -213,7 +239,7 @@
                             </div>
 
                             <!-- correo -->
-                            <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                            <div class="form-group col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <label>Correo</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -290,7 +316,7 @@
     <?php include './Views/includes/script_new.php' ?>
 
     </html>
-    <script src="<?php echo BASE_URL; ?>/assets/js/modulos/personal.js"></script>
+    <script src="<?php echo BASE_URL; ?>/assets/js/modulos/persona.js"></script>
 
     <script>
         const base_url = '<?php echo BASE_URL; ?>';

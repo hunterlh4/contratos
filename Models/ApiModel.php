@@ -17,4 +17,28 @@ class ApiModel extends Query
         order by apellido_nombre asc ";
         return $this->selectAll($sql);
     }
+
+    public function listarDepartamento()
+    {
+        $sql = "SELECT  * from departamento 
+       
+        order by nombre asc ";
+        return $this->selectAll($sql);
+    }
+
+    public function listarProvincia($departamento_id)
+    {
+        $sql = "SELECT  * from provincia where  departamento_id =$departamento_id  
+       
+        order by nombre asc ";
+        return $this->selectAll($sql);
+    }
+
+    public function listarDistrito($provincia_id)
+    {
+        $sql = "SELECT  * from distrito where provincia_id = $provincia_id 
+       
+        order by nombre asc ";
+        return $this->selectAll($sql);
+    }
 }

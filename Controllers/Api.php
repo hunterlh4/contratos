@@ -18,17 +18,19 @@ class Api extends Controller
         die();
     }
 
-    public function listarTrabajadoresActivos(){
-        
+    public function listarTrabajadoresActivos()
+    {
+
         $data = $this->model->obtenerTrabajadoresActivos();
 
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
-    function obtenerIpCliente() {
+    function obtenerIpCliente()
+    {
         $ip = '';
-    
+
         if (isset($_SERVER['HTTP_CLIENT_IP']) && !empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -40,8 +42,57 @@ class Api extends Controller
         }
         // echo $ip;
         return $ip;
-        
+    }
+
+
+    function listarDepartamento()
+    {
+
+        $data1 = $this->model->listarDepartamento();
+
+        echo json_encode($data1, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    function listarProvincia()
+    {
+        if (isset($_POST['departamento_id'])) {
+
+            $departamento_id = $_POST['departamento_id'];
+
+
+            $data = $this->model->listarProvincia($departamento_id);
+
+
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        } else {
+
+            $respuesta = ['msg' => 'error', 'icono' => 'error'];
+            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+        }
+
+        // Detiene la ejecución del script
+        die();
+    }
+
+    function listarDistrito()
+    {
+        if (isset($_POST['provincia_id'])) {
+
+            $provincia_id = $_POST['provincia_id'];
+
+
+            $data = $this->model->listarDistrito($provincia_id);
+
+
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        } else {
+
+            $respuesta = ['msg' => 'error', 'icono' => 'error'];
+            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+        }
+
+        // Detiene la ejecución del script
+        die();
     }
 }
-
-

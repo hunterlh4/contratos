@@ -41,8 +41,8 @@ class PersonalModel extends Query
         $sql = "SELECT 
                id,nombre,estado,apellido_paterno
                 FROM Personal 
-                where estado = 1
-                ORDER BY id asc ";
+                -- where estado = 1
+                ORDER BY nombre asc ";
         // $sql = "SELECT T.id as tid,T.estado as testado from Personales as T ORDER BY id ASC";
         return $this->selectAll($sql);
     }
@@ -101,16 +101,16 @@ class PersonalModel extends Query
         $sql = "SELECT id,dni FROM Personal WHERE dni = '$dni' ";
         return $this->select($sql);
     }
-    public function registrar($dni, $nombre, $apellido, $direccion_id, $regimen_id, $horarioDetalle_id, $cargo_id, $email, $telefono, $numero_tarjeta, $sexo, $fecha_nacimiento, $modalidad_trabajo)
+    public function registrar($dni, $nombre, $apellido_paterno, $apellido_materno, $area, $cargo, $correo, $telefono, $celular)
     {
-        $sql = "INSERT INTO Personal (dni,nombre,apellido,direccion_id,regimen_id,horarioDetalle_id,cargo_id,email,telefono,tarjeta,sexo,fecha_nacimiento,modalidad_trabajo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-        $array = array($dni, $nombre, $apellido, $direccion_id, $regimen_id, $horarioDetalle_id, $cargo_id, $email, $telefono, $numero_tarjeta, $sexo, $fecha_nacimiento, $modalidad_trabajo);
+        $sql = "INSERT INTO Personal (dni,nombre,apellido_paterno,apellido_materno,area_id,cargo_id,correo,telefono,celular) VALUES (?,?,?,?,?,?,?,?,?)";
+        $array = array($dni, $nombre, $apellido_paterno, $apellido_materno, $area, $cargo, $correo, $telefono, $celular);
         return $this->insertar($sql, $array);
     }
-    public function modificar($dni, $nombre, $apellido, $direccion_id, $regimen_id, $horarioDetalle_id, $cargo_id, $email, $telefono, $numero_tarjeta, $sexo, $fecha_nacimiento, $modalidad_trabajo, $estado, $id)
+    public function modificar($dni, $nombre, $apellido_paterno, $apellido_materno, $area, $cargo, $correo, $telefono, $celular, $estado, $id)
     {
-        $sql = "UPDATE Personal SET dni=?,nombre=?,apellido=?,direccion_id=?,regimen_id=?,horarioDetalle_id=?,cargo_id=?,email=?,telefono=?,tarjeta=?,sexo=?,fecha_nacimiento=?,modalidad_trabajo=?,estado=? WHERE id = ?";
-        $array = array($dni, $nombre, $apellido, $direccion_id, $regimen_id, $horarioDetalle_id, $cargo_id, $email, $telefono, $numero_tarjeta, $sexo, $fecha_nacimiento, $modalidad_trabajo, $estado, $id);
+        $sql = "UPDATE Personal SET dni=?,nombre=?,apellido_paterno=?,apellido_materno=?,area_id=?,cargo_id=?,correo=?,telefono=?,celular=?,estado=? WHERE id = ?";
+        $array = array($dni, $nombre, $apellido_paterno, $apellido_materno, $area, $cargo, $correo, $telefono, $celular, $estado, $id);
         return $this->save($sql, $array);
     }
 
