@@ -124,76 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
     validarformulario();
   });
 
-  // selectDepartamento.addEventListener("change", function () {
-  //   let departamento_id = this.value;
-  //   let ubigeo_departamento = this.options[this.selectedIndex].dataset.ubigeo;
-  //   ubigeo = ubigeo_departamento; // Asignar el ubigeo del departamento
-
-  //   if (departamento_id) {
-  //     $.ajax({
-  //       url: base_url + "Api/listarProvincia",
-  //       type: "POST",
-  //       data: { departamento_id: departamento_id },
-  //       success: function (response) {
-  //         let datos = JSON.parse(response);
-  //         selectProvincia.innerHTML =
-  //           '<option value="" selected>Selecciona una provincia</option>';
-  //         selectDistrito.innerHTML =
-  //           '<option value="" selected>Selecciona un distrito</option>'; // Reset distritos
-
-  //         datos.forEach((opcion) => {
-  //           let option = document.createElement("option");
-  //           option.value = opcion.id;
-  //           option.dataset.ubigeo = opcion.ubigeo;
-  //           option.text = opcion.nombre;
-  //           selectProvincia.appendChild(option);
-  //         });
-  //       },
-  //       error: function (xhr, status, error) {
-  //         console.error(error);
-  //       }
-  //     });
-  //   }
-  // });
-
-  // // Cargar Distritos al seleccionar una Provincia
-  // selectProvincia.addEventListener("change", function () {
-  //   let provincia_id = this.value;
-  //   let ubigeo_provincia = this.options[this.selectedIndex].dataset.ubigeo;
-  //   ubigeo = ubigeo.substring(0, 2) + ubigeo_provincia; // Concatenar ubigeo del departamento + provincia
-
-  //   if (provincia_id) {
-  //     $.ajax({
-  //       url: base_url + "Api/listarDistrito",
-  //       type: "POST",
-  //       data: { provincia_id: provincia_id },
-  //       success: function (response) {
-  //         let datos = JSON.parse(response);
-  //         selectDistrito.innerHTML =
-  //           '<option value="" selected>Selecciona un distrito</option>';
-
-  //         datos.forEach((opcion) => {
-  //           let option = document.createElement("option");
-  //           option.value = opcion.id;
-  //           option.dataset.ubigeo = opcion.ubigeo;
-  //           option.text = opcion.nombre;
-  //           selectDistrito.appendChild(option);
-  //         });
-  //       },
-  //       error: function (xhr, status, error) {
-  //         console.error(error);
-  //       }
-  //     });
-  //   }
-  // });
-
-  // // Actualizar Ubigeo al seleccionar un Distrito
-  // selectDistrito.addEventListener("change", function () {
-  //   let ubigeo_distrito = this.options[this.selectedIndex].dataset.ubigeo;
-  //   ubigeo = ubigeo.substring(0, 4) + ubigeo_distrito; // Concatenar ubigeo completo
-  //   console.log("Ubigeo seleccionado:", ubigeo);
-  // });
-
   // Evento para seleccionar la provincia según el departamento
   selectDepartamento.addEventListener("change", function () {
     let departamento_id = this.value;
@@ -226,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (input_ubigeo) {
             seleccionarProvincia(input_ubigeo.substring(0, 4));
           }
-        }
+        },
       });
     }
   });
@@ -261,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (input_ubigeo) {
             seleccionarDistrito(input_ubigeo);
           }
-        }
+        },
       });
     }
   });
@@ -272,66 +202,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("Ubigeo seleccionado (final):", ubigeo); // 👀 MOSTRAR EN CONSOLA
   });
-
-  // Función para seleccionar automáticamente el Departamento, Provincia y Distrito
-  // function seleccionarUbigeo(ubigeo) {
-  //   let departamentoCodigo = ubigeo.substring(0, 2);
-  //   let provinciaCodigo = ubigeo.substring(0, 4);
-
-  //   // Seleccionar departamento
-  //   selectDepartamento.value =
-  //     [...selectDepartamento.options].find(
-  //       (opt) => opt.dataset.ubigeo === departamentoCodigo
-  //     )?.value || "";
-  //   selectDepartamento.dispatchEvent(new Event("change"));
-
-  //   // Esperar carga de provincias y luego seleccionar
-  //   setTimeout(() => seleccionarProvincia(provinciaCodigo), 500);
-  // }
-
-  // function seleccionarProvincia(provinciaCodigo) {
-  //   selectProvincia.value =
-  //     [...selectProvincia.options].find(
-  //       (opt) => opt.dataset.ubigeo === provinciaCodigo
-  //     )?.value || "";
-  //   selectProvincia.dispatchEvent(new Event("change"));
-
-  //   // Esperar carga de distritos y luego seleccionar
-  //   setTimeout(() => seleccionarDistrito(input_ubigeo), 500);
-  // }
-
-  // function seleccionarDistrito(ubigeo) {
-  //   selectDistrito.value =
-  //     [...selectDistrito.options].find((opt) => opt.dataset.ubigeo === ubigeo)
-  //       ?.value || "";
-  // }
 });
-
-// function prueba() {
-//   $.ajax({
-//     url: base_url + "Personal/listar",
-//     type: "GET",
-
-//     success: function (response) {
-//       datos = JSON.parse(response);
-//       console.log(datos,'personal')
-
-//         // Agregar la opción al selec
-//     },
-//     error: function (xhr, status, error) {
-//       console.error(error);
-//     },
-//   });
-// }
 
 function validarformulario() {
   let errores = "";
 
-  // if (input_dni.value === "" || input_dni.value.length !== 8) {
-  //   errores += "El <b>DNI</b> debe tener exactamente 8 dígitos numéricos.<br>";
-  // }
-
-  // Validar Cargo y Área (Seleccionar opción válida)
   if (selectDepartamento === "") {
     errores += "Selecciona un <b>Departamento</b>.<br>";
   }
@@ -404,7 +279,7 @@ function registrar() {
     },
     error: function (xhr, status, error) {
       console.error("Error al enviar la solicitud: " + error);
-    }
+    },
   });
 }
 
@@ -416,7 +291,7 @@ function llenarTabla() {
   tblUsuario = $("#table-alex").DataTable({
     ajax: {
       url: base_url + "Contrato/listar",
-      dataSrc: ""
+      dataSrc: "",
     },
     columns: [
       { data: "contador" },
@@ -424,7 +299,7 @@ function llenarTabla() {
         data: null,
         render: function (data, type, row) {
           return row.tipo_contrato_sigla + row.contrato_codigo_correlativo;
-        }
+        },
       },
       //   { data: "tipo_contrato_nombre" },
       { data: "tipo_contrato_nombre" },
@@ -433,7 +308,7 @@ function llenarTabla() {
 
       { data: "etapa_contrato_nombre" },
       { data: "contrato_fecha_solicitada" },
-      { data: "accion", className: "text-center" }
+      { data: "accion", className: "text-center" },
     ],
     dom: "Bfrtip",
     language: {
@@ -453,7 +328,7 @@ function llenarTabla() {
         sFirst: "Primero",
         sLast: "Último",
         sNext: "Siguiente",
-        sPrevious: "Anterior"
+        sPrevious: "Anterior",
       },
       buttons: {
         copy: "Copiar",
@@ -464,14 +339,14 @@ function llenarTabla() {
           "Presione ctrl o u2318 + C para copiar los datos de la tabla al portapapeles del sistema. <br /> <br /> Para cancelar, haga clic en este mensaje o presione escape.",
         copySuccess: {
           1: "Copiada 1 fila al portapapeles",
-          _: "Copiadas %ds fila al portapapeles"
+          _: "Copiadas %ds fila al portapapeles",
         },
         copyTitle: "Copiar al portapapeles",
         csv: "CSV",
         excel: "Excel",
         pageLength: {
           "-1": "Mostrar todas las filas",
-          _: "Mostrar %d filas"
+          _: "Mostrar %d filas",
         },
         pdf: "PDF",
         print: "Imprimir",
@@ -481,48 +356,48 @@ function llenarTabla() {
         removeAllStates: "Remover Estados",
         removeState: "Remover",
         savedStates: "Estados Guardados",
-        stateRestore: "Estado %d"
+        stateRestore: "Estado %d",
       },
       oAria: {
         sSortAscending:
           ": Activar para ordenar la columna de manera ascendente",
         sSortDescending:
-          ": Activar para ordenar la columna de manera descendente"
-      }
+          ": Activar para ordenar la columna de manera descendente",
+      },
     },
 
     buttons: [
       {
         extend: "copy",
         exportOptions: {
-          columns: [0, 1, 2, 3, 4, 5, 6] // Especifica las columnas que deseas copiar
-        }
+          columns: [0, 1, 2, 3, 4, 5, 6], // Especifica las columnas que deseas copiar
+        },
       },
       {
         extend: "csv",
         exportOptions: {
-          columns: [0, 1, 2, 3, 4, 5, 6] // Especifica las columnas que deseas exportar a CSV
-        }
+          columns: [0, 1, 2, 3, 4, 5, 6], // Especifica las columnas que deseas exportar a CSV
+        },
       },
       {
         extend: "excel",
         exportOptions: {
-          columns: [0, 1, 2, 3, 4, 5, 6] // Especifica las columnas que deseas exportar a Excel
-        }
+          columns: [0, 1, 2, 3, 4, 5, 6], // Especifica las columnas que deseas exportar a Excel
+        },
       },
       {
         extend: "pdf",
         exportOptions: {
-          columns: [0, 1, 2, 3, 4, 5, 6] // Especifica las columnas que deseas exportar a PDF
-        }
+          columns: [0, 1, 2, 3, 4, 5, 6], // Especifica las columnas que deseas exportar a PDF
+        },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [0, 1, 2, 3, 4, 5, 6] // Especifica las columnas que deseas imprimir
-        }
-      }
-    ]
+          columns: [0, 1, 2, 3, 4, 5, 6], // Especifica las columnas que deseas imprimir
+        },
+      },
+    ],
   });
 }
 
@@ -579,7 +454,7 @@ function edit(id) {
     error: function (xhr, status, error) {
       console.error("Error en la petición AJAX:", error);
       alert("Hubo un problema al obtener los datos.");
-    }
+    },
   });
 }
 
@@ -647,10 +522,10 @@ function seleccionarUbigeo(ubigeoCompleto) {
               if (optionDist) {
                 selectDistrito.value = optionDist.value;
               }
-            }
+            },
           });
         }
-      }
+      },
     });
   }
 }
@@ -715,7 +590,7 @@ function llenarselectDepartamento() {
     },
     error: function (xhr, status, error) {
       console.error(error);
-    }
+    },
   });
 }
 

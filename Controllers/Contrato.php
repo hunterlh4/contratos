@@ -22,6 +22,34 @@ class Contrato extends Controller
         $data1 = '';
         $this->views->getView('Administracion', "Contrato_Solicitud", $data, $data1);
     }
+    public function Nuevo_Arrendamiento()
+    {
+        $data['title'] = 'Contrato de Arrendamiento';
+        $data['nivel'] =  $_SESSION['nivel'];
+        $data1 = '';
+        $this->views->getView('Administracion', "Contrato_Arrendamiento_nuevo", $data, $data1);
+    }
+    public function Nuevo_LocacionServicio()
+    {
+        $data['title'] = 'Contrato de Locacion de Servicios';
+        $data['nivel'] =  $_SESSION['nivel'];
+        $data1 = '';
+        $this->views->getView('Administracion', "Contrato_Locacion_nuevo", $data, $data1);
+    }
+    public function Nuevo_Mandato()
+    {
+        $data['title'] = 'Contrato de Mandato Mandato';
+        $data['nivel'] =  $_SESSION['nivel'];
+        $data1 = '';
+        $this->views->getView('Administracion', "Contrato_Mandato_nuevo", $data, $data1);
+    }
+    public function Nuevo_MutuoDinero()
+    {
+        $data['title'] = 'Contrato de Mutuo de Dinero';
+        $data['nivel'] =  $_SESSION['nivel'];
+        $data1 = '';
+        $this->views->getView('Administracion', "Contrato_Mutuo_nuevo", $data, $data1);
+    }
 
     public function ver()
     {

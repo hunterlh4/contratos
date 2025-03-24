@@ -302,4 +302,12 @@ class Personal extends Controller
         }
         die();
     }
+
+    public function listarAbogado()
+    {
+        $data1 = $this->model->listarAbogado();
+
+        echo json_encode($data1, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }

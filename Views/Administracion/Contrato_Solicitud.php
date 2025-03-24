@@ -18,10 +18,23 @@
                                     <div
                                         class="card-header d-flex justify-content-between align-items-center mb-0 mt-3">
                                         <h3 class="font-weight-bolder"><i class="fa fa-briefcase"></i> Contrato</h3>
-                                        <div class="ml-auto">
-                                            <!-- <button class="btn btn-lg btn-outline-primary rounded-0" type="button" onclick=goBack()>Volver</button> -->
+                                        <!-- <div class="ml-auto">
+                                            
                                             <button class="btn btn-lg btn-outline-primary rounded-0" type="button"
                                                 id="nuevo_registro">Nuevo</button>
+                                        </div> -->
+
+                                        <div class="dropdown d-inline mr-2">
+                                            <button class="btn btn-primary rounded-0 dropdown-toggle" type="button" id="dropdownMenuButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Nuevo Contrato
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="<?php echo BASE_URL . 'Contrato/Nuevo_Arrendamiento'; ?>">Arrendamiento</a>
+                                                <a class="dropdown-item" href="<?php echo BASE_URL . 'Contrato/Nuevo_LocacionServicio'; ?>">Locacion de Servicio</a>
+                                                <a class="dropdown-item" href="<?php echo BASE_URL . 'Contrato/Nuevo_Mandato'; ?>">Mandato</a>
+                                                <a class="dropdown-item" href="<?php echo BASE_URL . 'Contrato/Nuevo_MutuoDinero'; ?>">Mutuo Dinero</a>
+                                            </div>
                                         </div>
                                     </div>
 

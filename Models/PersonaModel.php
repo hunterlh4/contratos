@@ -19,6 +19,12 @@ class PersonaModel extends Query
         return $this->select($sql);
     }
 
+    public function listarReceptor($id)
+    {
+        $sql = "SELECT * FROM persona WHERE id !=  $id order by nombre;";
+        return $this->selectAll($sql);
+    }
+
     public function verificardni($dni)
     {
         $sql = "SELECT id,numero_documento FROM Persona WHERE numero_documento = '$dni' ";

@@ -49,6 +49,27 @@ class Persona extends Controller
         return $data;
     }
 
+    function listarReceptor()
+    {
+        if (isset($_POST['emisor_id'])) {
+
+            $emisor_id = $_POST['emisor_id'];
+
+
+            $data = $this->model->listarReceptor($emisor_id);
+
+
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        } else {
+
+            $respuesta = ['msg' => 'error', 'icono' => 'error'];
+            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+        }
+
+        // Detiene la ejecución del script
+        die();
+    }
+
 
 
     public function registrar()

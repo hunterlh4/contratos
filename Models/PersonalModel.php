@@ -53,6 +53,16 @@ class PersonalModel extends Query
 
         return $this->select($sql);
     }
+
+    public function listarAbogado()
+    {
+        $sql = "SELECT p.*, c.nombre AS cargo_nombre
+FROM personal p
+INNER JOIN cargo c ON p.cargo_id = c.id
+WHERE c.nombre = 'Abogado' OR c.nombre ='Abogado Junior' 
+ORDER BY p.apellido_paterno ;";
+        return $this->selectAll($sql);
+    }
     public function getDireccion()
     {
         $sql = "SELECT 
