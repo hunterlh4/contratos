@@ -1,8 +1,10 @@
 <?php
-const BASE_URL = "http://localhost/contratos/";
+// const BASE_URL = "http://localhost/contratos/";
+const BASE_URL = "http://contratos.test:90/";
+
 const HOST = "localhost";
-const USER = "root";
-const PASS = "";
+const USER = "admin";
+const PASS = "admin";
 // const DB = "postgres3";
 const DB = "bd_contratos";
 const CHARSET = "utf8";

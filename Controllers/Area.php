@@ -25,6 +25,7 @@ class Area extends Controller
     }
     public function listar()
     {
+
         $data = $this->model->getAreas();
         for ($i = 0; $i < count($data); $i++) {
 

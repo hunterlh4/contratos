@@ -362,6 +362,7 @@ VALUES
     ('Rol_D&D', 'Rol para testear', 1);
 
 
+
 INSERT INTO usuario
     (
     username,
@@ -379,25 +380,25 @@ INSERT INTO usuario
     )
 VALUES
 
-    ('legal.test', '4badaee57fed5610012a296273158f5f', 2, 10, 'intranet+extranet', 1, 1, 1, '2025-02-12 13:50:10', NULL, 1, NULL),
+    ('legal.test', '4badaee57fed5610012a296273158f5f', 1, 10, 'intranet+extranet', 1, 1, 1, '2025-02-12 13:50:10', NULL, 1, NULL),
     ('qa.test', '4badaee57fed5610012a296273158f5f', 4, 10, 'intranet+extranet', 1, 1, 1, '2024-09-26 09:55:27', NULL, 1, 4),
     ('tania.carpio', '4badaee57fed5610012a296273158f5f', 9, 1, 'intranet+extranet', 1, 1, 1, '2024-10-01 14:17:42', NULL, 1, 1),
     ('gerente.legal', 'eb65bf2d2cb7eda01000d764afd0d695', 10, 10, 'intranet+extranet', NULL, 1, 0, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
     ('jefe.legal', '6b1fb404a55c347e8de42a232e2183f5', 11, 10, 'intranet', 1, 1, 1, '2025-01-06 12:55:59', NULL, 7, 7),
     ('abogado.abogado', '9bf6263dc93d0e8102080a8733456c7e', 12, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('director.producto', 'a410aad669b53816d1df5a6c25d6e26d', 13, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('subgerente.producto', '15aef49501a16c24122d24e81bfafcb7', 14, 1, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('jefe.producto', '65eddb5d804084a5e563ad77acb7c122', 15, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('gerente.producto', '6ed33fa677321a166da7f685bc95c5d6', 16, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('contador.general', '4badaee57fed5610012a296273158f5f', 17, 10, 'intranet', 1, 1, 1, '2025-01-22 14:52:28', NULL, 1, 0),
-    ('director.administracion', '7a94628d91af604197258c4ad4478543', 18, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('gerente.finanzas', 'f94ae5280483ba3efd147c87353703da', 19, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('anamaria.huaman', 'c7dc6fd3ee8f1c17cf71acc380599577', 20, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('yesseÑa.collantes', '0745dfd45a9555987d3ef22938c393d3', 21, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('anamariaivonne.garate', '0a36c4b233913e80255c799df3c2d724', 22, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('karinarosalba.caycho', 'b484adbeb61bcb711678f927358cd703', 23, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('karlacecilia.torrejon', '31434810d870a78ddca7a62cd1b5f4f1', 24, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
-    ('test', 'test', 25, 10, 'intranet', 1, 1, 0, NULL, NULL, NULL, NULL);
+    ('director.producto', 'a410aad669b53816d1df5a6c25d6e26d', 10, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('subgerente.producto', '15aef49501a16c24122d24e81bfafcb7', 11, 1, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('jefe.producto', '65eddb5d804084a5e563ad77acb7c122', 11, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('gerente.producto', '6ed33fa677321a166da7f685bc95c5d6', 10, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('contador.general', '4badaee57fed5610012a296273158f5f', 1, 10, 'intranet', 1, 1, 1, '2025-01-22 14:52:28', NULL, 1, 0),
+    ('director.administracion', '7a94628d91af604197258c4ad4478543', 2, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('gerente.finanzas', 'f94ae5280483ba3efd147c87353703da', 2, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('anamaria.huaman', 'c7dc6fd3ee8f1c17cf71acc380599577', 3, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('yesseÑa.collantes', '0745dfd45a9555987d3ef22938c393d3', 4, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('anamariaivonne.garate', '0a36c4b233913e80255c799df3c2d724', 5, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('karinarosalba.caycho', 'b484adbeb61bcb711678f927358cd703', 6, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('karlacecilia.torrejon', '31434810d870a78ddca7a62cd1b5f4f1', 7, 10, NULL, 1, 0, NULL, '2024-12-13 18:46:18', '2024-12-13 18:46:18', NULL, 7),
+    ('test', 'test', 10, 10, 'intranet', 8, 1, 0, NULL, NULL, NULL, NULL);
 
 INSERT INTO tipo_contrato
     (nombre, descripcion, orden, estado, sigla, user_created_id)

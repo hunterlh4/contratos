@@ -2,7 +2,7 @@
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
       <a href="<?php echo BASE_URL; ?>"> <img alt="image" src="<?php echo BASE_URL; ?>assets/img/icono_diresa.png"
-          class="header-logo" /> <span class="logo-name">DIRESA TACNA</span>
+          class="header-logo" /> <span class="logo-name">DIRESA TACNA </span>
       </a>
     </div>
     <ul class="sidebar-menu">

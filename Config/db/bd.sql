@@ -243,7 +243,7 @@ CREATE TABLE tipo_contrato (
     orden INT NOT NULL DEFAULT 0, -- Orden de prioridad
     estado BOOLEAN  NULL DEFAULT 1, -- 1 = Activo, 0 = Inactivo
     sigla VARCHAR(50) NOT NULL UNIQUE,
-    user_created_id INT NOT NULL,
+    user_created_id INT  NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -260,7 +260,7 @@ CREATE TABLE formato_contrato (
     descripcion TEXT NULL,
     contenido TEXT NULL, -- Contenido del contrato
     estado BOOLEAN NOT NULL DEFAULT 1, -- 1 = Activo, 0 = Inactivo
-    user_created_id INT NOT NULL,
+    user_created_id INT  NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -358,7 +358,7 @@ CREATE TABLE tipo_archivo (
     nombre VARCHAR(255) NOT NULL,
     tipo_contrato_id int NOT NULL,
     estado BOOLEAN NOT NULL DEFAULT TRUE, -- Usando BOOLEAN
-    user_created_id INT NOT NULL,
+    user_created_id INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -377,7 +377,7 @@ CREATE TABLE adenda (
     fecha DATE NOT NULL, -- Fecha de la adenda
     proceso varchar(100) null,
     estado BOOLEAN NOT NULL DEFAULT TRUE, -- Activo/Inactivo
-    user_created_id INT NOT NULL,
+    user_created_id INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -391,7 +391,7 @@ CREATE TABLE adenda_detalle (
     campo_modificado VARCHAR(50) NOT NULL, -- Ejemplo: "monto", "fecha_fin"
     valor_anterior TEXT NULL, -- Valor original del contrato
     valor_nuevo TEXT NOT NULL, -- Nuevo valor definido en la adenda
-    user_created_id INT NOT NULL,
+    user_created_id INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (adenda_id) REFERENCES adenda(id) ON DELETE CASCADE
@@ -404,7 +404,7 @@ CREATE TABLE observacion (
     adenda_id INT NULL,
     observacion TEXT NOT NULL,
     estado BOOLEAN NOT NULL DEFAULT TRUE,
-    user_created_id INT NOT NULL,
+    user_created_id INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -428,7 +428,7 @@ CREATE TABLE archivo (
     ruta VARCHAR(500) NOT NULL,
     size INT NOT NULL, -- En bytes
     estado BOOLEAN NOT NULL DEFAULT TRUE,
-    user_created_id INT NOT NULL,
+    user_created_id INT  NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_updated_id INT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -444,20 +444,20 @@ CREATE TABLE archivo (
 
 
 
-contrato_detalle
-contrato_adelanto
-contrato_adenda
-contrato_adenda_detalle
-contrato_auditoria (revisar)
-contrato_condicion_economica (revisar)
-contrato_contraprestacion (revisar)
-contrato_declaracion_jurada (revisar)
+-- contrato_detalle
+-- contrato_adelanto
+-- contrato_adenda
+-- contrato_adenda_detalle
+-- contrato_auditoria (revisar)
+-- contrato_condicion_economica (revisar)
+-- contrato_contraprestacion (revisar)
+-- contrato_declaracion_jurada (revisar)
 
-contrato_beneficiario
-contrato_adenda_detalle
-contrato_archivo (subida de documento)
-contrato_inmueble
-contrato_inmueble (suministro)
+-- contrato_beneficiario
+-- contrato_adenda_detalle
+-- contrato_archivo (subida de documento)
+-- contrato_inmueble
+-- contrato_inmueble (suministro)
 
 
 
